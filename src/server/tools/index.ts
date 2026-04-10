@@ -1,6 +1,6 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { z } from 'zod'
-import { ctx } from '../context.js'
+import { ctx } from '../context'
 
 export const registerTools = (server: McpServer) => {
   server.registerTool(

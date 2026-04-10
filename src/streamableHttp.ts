@@ -1,9 +1,9 @@
 import express, { Request, Response } from 'express'
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js'
-import { createServer } from './server/index.js'
+import { createServer } from '@/server'
 import crypto from 'crypto'
-import { ctx } from './server/context.js'
+import { ctx } from '@/server/context'
 import { parseContextData } from './utils/parse.js'
 
 /**

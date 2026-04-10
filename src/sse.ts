@@ -1,7 +1,7 @@
 import { SSEServerTransport } from '@modelcontextprotocol/sdk/server/sse.js'
 import express, { Request, Response } from 'express'
-import { createServer } from './server/index.js'
-import { ctx } from './server/context.js'
+import { createServer } from '@/server'
+import { ctx } from '@/server/context'
 import pkg from '../package.json'
 import { parseContextData } from './utils/parse.js'
 
