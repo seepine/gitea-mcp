@@ -7,11 +7,7 @@ import { parseContextData } from '@/utils/parse'
 
 async function main() {
   // stdio 模式下填充默认上下文，因为一般从 env 传值
-  ctx.setDefaultContext({
-    headers: {
-      custom: '123',
-    },
-  })
+  ctx.setDefaultContext(parseContextData()!)
   const server: McpServer = createServer()
   const transport = new StdioServerTransport()
   await server.connect(transport)
