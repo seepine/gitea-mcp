@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.5](https://github.com/seepine/gitea-mcp/compare/v0.0.4...v0.0.5) (2026-04-10)
+
+
+### Bug Fixes
+
+* **gitea:** correct trailing slash handling in baseURL construction ([c591852](https://github.com/seepine/gitea-mcp/commit/c59185257e252bb21890ede1f6226a8b5209c97d))
+
 ## [0.0.4](https://github.com/seepine/gitea-mcp/compare/v0.0.3...v0.0.4) (2026-04-10)
 
 
