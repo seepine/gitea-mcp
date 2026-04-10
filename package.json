@@ -1,9 +1,9 @@
 {
-  "name": "mcp-server-template",
-  "version": "0.1.0",
-  "author": "",
+  "name": "gitea-mcp",
+  "version": "0.0.2",
+  "author": "seepine",
   "license": "MIT",
-  "description": "Mcp Server Template",
+  "description": "Interactive with Gitea instances with MCP",
   "type": "module",
   "main": "dist/stdio.js",
   "scripts": {
@@ -36,13 +36,14 @@
     "typescript": "~5.8.2"
   },
   "bin": {
-    "mcp-server-template": "dist/stdio.js"
+    "gitea-mcp": "dist/stdio.js"
   },
   "files": [
     "dist"
   ],
   "keywords": [
-    "mcp"
+    "mcp",
+    "gitea"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
@@ -50,7 +51,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/seepine/gitea-mcp"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

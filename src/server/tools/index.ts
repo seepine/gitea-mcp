@@ -20,7 +20,7 @@ export const registerTools = (server: McpServer) => {
         city: city,
         temperature: Math.floor(Math.random() * 30),
         condition: 'Sunny',
-        headers: ctx.safeGet().data?.headers,
+        headers: ctx.safeGet().data,
       }
 
       return {

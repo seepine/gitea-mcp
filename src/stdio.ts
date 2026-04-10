@@ -2,11 +2,15 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { createServer } from './server/index.js'
+import { ctx } from './server/context.js'
+import { parseContextData } from './utils/parse.js'
 
 async function main() {
-  const server: McpServer = createServer()
-  const transport = new StdioServerTransport()
-  await server.connect(transport)
+  await ctx.run(parseContextData()!, async () => {
+    const server: McpServer = createServer()
+    const transport = new StdioServerTransport()
+    await server.connect(transport)
+  })
 }
 
 main().catch((error) => {

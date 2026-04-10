@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express'
 import { createServer } from './server/index.js'
 import { ctx } from './server/context.js'
 import pkg from '../package.json'
+import { parseContextData } from './utils/parse.js'
 
 /**
  * Creates and starts an Express server that provides SSE transport for the MCP Fetch server
@@ -38,14 +39,9 @@ export function startSSEServer(
   // Endpoint for receiving messages from the c lient
   app.post(messagePath, async (req: Request, res: Response) => {
     console.info('Received SSE message')
-    ctx.run(
-      {
-        headers: req.headers,
-      },
-      async function () {
-        await transport.handlePostMessage(req, res)
-      },
-    )
+    ctx.run(parseContextData(req.headers, res)!, async function () {
+      await transport.handlePostMessage(req, res)
+    })
   })
 
   // Basic info endpoint

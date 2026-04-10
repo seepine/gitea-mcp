@@ -1,4 +1,68 @@
-# Mcp Server Template
+# Gitea MCP
+
+## 使用(stdio)
+
+### 1. MCP 配置
+
+```json
+{
+  "mcpServers": {
+    "gitea-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["gitea-mcp"],
+      "env": {
+        "GITEA_HOST": "https://gitea.example.com",
+        "GITEA_ACCESS_TOKEN": "xxxxxxxxxx"
+      }
+    }
+  }
+}
+```
+
+## 使用(服务端)
+
+### 1. 部署服务端
+
+1. Build
+
+```bash
+docker build -t gitea-mcp .
+```
+
+2. Run the server
+
+```bash
+docker run -p 3000:3000 gitea-mcp
+# 或启动 sse
+docker run -p 4000:4000 gitea-mcp node sse.js
+```
+
+### 2. MCP 配置
+
+```json
+{
+  "mcpServers": {
+    "gitea-mcp": {
+      "type": "streamableHttp",
+      "url": "http://localhost:3000/mcp",
+      "headers": {
+        "Gitea-Host": "https://gitea.example.com",
+        "Gitea-Access-Token": "xxxxxxxxxx"
+      }
+    },
+    // 或 sse
+    "gitea-mcp": {
+      "type": "sse",
+      "url": "http://localhost:4000/mcp",
+      "headers": {
+        "Gitea-Host": "https://gitea.example.com",
+        "Gitea-Access-Token": "xxxxxxxxxx"
+      }
+    }
+  }
+}
+```
 
 ## 开发
 
@@ -22,74 +86,3 @@ pnpm dev
 
 - stdio 模式，可以用 `process.env` 获取 mcp 配置的 env 变量
 - see/streamable-http 模式，可以用封装的 ctx.get() 获取 mcp 配置的请求头，方便鉴权等
-
-## 部署 Stdio
-
-### 1. 打包
-
-```bash
-pnpm build
-```
-
-### 2. 发布到 npm
-
-```bash
-pnpm publish
-```
-
-### 3. MCP 配置
-
-```json
-{
-  "mcpServers": {
-    "mcp-server-template": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["mcp-server-template"],
-      "env": {
-        "API_KEY": "sk-123"
-      }
-    }
-  }
-}
-```
-
-## 部署 docker
-
-### 1. Build
-
-```bash
-docker build -t mcp-server-template .
-```
-
-### 2. Run the server
-
-```bash
-docker run -p 3000:3000 mcp-server-template
-# 或启动 sse
-docker run -p 4000:4000 mcp-server-template node sse.js
-```
-
-### 3. MCP 配置
-
-```json
-{
-  "mcpServers": {
-    "mcp-server-template": {
-      "type": "streamableHttp",
-      "url": "http://localhost:3000/mcp",
-      "headers": {
-        "API_KEY": "sk-123"
-      }
-    },
-    // 或 sse
-    "mcp-server-template": {
-      "type": "sse",
-      "url": "http://localhost:4000/mcp",
-      "headers": {
-        "API_KEY": "sk-123"
-      }
-    }
-  }
-}
-```

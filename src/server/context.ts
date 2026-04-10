@@ -1,8 +1,8 @@
 import { AsyncLocalStorage } from 'async_hooks'
-import { IncomingHttpHeaders } from 'http'
 
 type Context = {
-  headers: IncomingHttpHeaders
+  giteaHost: string
+  giteaAccessToken: string
 }
 
 const storage = new AsyncLocalStorage<Context>()
