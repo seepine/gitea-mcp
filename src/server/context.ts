@@ -18,7 +18,7 @@ export const ctx = {
         'not found context, please use ctx.run(context,()=>{ /* xxx */ }) to wrap your code',
       )
     }
-    return storage.getStore()!
+    return val
   },
   safeGet: () => {
     var val = storage.getStore() ?? defaultContext
