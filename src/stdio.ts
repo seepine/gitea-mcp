@@ -6,11 +6,15 @@ import { ctx } from '@/server/context'
 import { parseContextData } from '@/utils/parse'
 
 async function main() {
-  await ctx.run(parseContextData()!, async () => {
-    const server: McpServer = createServer()
-    const transport = new StdioServerTransport()
-    await server.connect(transport)
+  // stdio 模式下填充默认上下文，因为一般从 env 传值
+  ctx.setDefaultContext({
+    headers: {
+      custom: '123',
+    },
   })
+  const server: McpServer = createServer()
+  const transport = new StdioServerTransport()
+  await server.connect(transport)
 }
 
 main().catch((error) => {
