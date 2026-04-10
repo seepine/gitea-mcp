@@ -4475,7 +4475,7 @@ export interface RunDetails {
   workflow_run_id?: number;
 }
 declare global {
-  interface Apis {
+  interface __Apis {
     admin: {
       /**
        * ---
@@ -68561,5 +68561,5 @@ declare global {
     };
   }
 
-  var Apis: Apis;
+  var __Apis: __Apis;
 }

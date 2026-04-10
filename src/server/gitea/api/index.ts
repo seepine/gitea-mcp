@@ -1,27 +1,20 @@
-import { createAlova } from 'alova'
-import fetchAdapter from 'alova/fetch'
-import { createApis, withConfigType, mountApis } from './createApis'
-import { ctx } from '../../context.js'
+import { createAlova } from 'alova';
+import fetchAdapter from 'alova/fetch';
+import { createApis, withConfigType, mountApis } from './createApis';
 
 export const alovaInstance = createAlova({
   baseURL: '/api/v1',
   requestAdapter: fetchAdapter(),
-  beforeRequest: (method) => {
-    const context = ctx.get()
-    method.baseURL = context.giteaHost + '/api/v1'
-    if (typeof method.config.params !== 'string') {
-      method.config.params.access_token = context.giteaAccessToken
-    }
-  },
-  responded: (res) => {
-    return res.json()
-  },
-})
+  beforeRequest: method => {},
+  responded: res => {
+    return res.json();
+  }
+});
 
-export const $$userConfigMap = withConfigType({})
+export const $$userConfigMap = withConfigType({});
 
-const Apis = createApis(alovaInstance, $$userConfigMap)
+const Apis = createApis(alovaInstance, $$userConfigMap);
 
-mountApis(Apis)
+mountApis(Apis);
 
-export default Apis
+export default Apis;

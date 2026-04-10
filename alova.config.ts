@@ -27,7 +27,7 @@ export default defineConfig((): UserConfig => {
         /**
          * 全局导出的api名称，可通过此名称全局范围访问自动生成的api，默认为`Apis`，配置了多个generator时为必填，且不可以重复
          */
-        global: 'Apis',
+        global: '__Apis',
         /**
          * 全局api对象挂载的宿主对象，默认为 `globalThis`，在浏览器中代表 `window`，在nodejs中代表 `global`
          */
