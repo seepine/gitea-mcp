@@ -6,7 +6,7 @@ export class Gitea {
   Apis: ReturnType<typeof createApis>
   constructor(opts: { giteaHost: string; giteaAccessToken: string }) {
     const alovaInstance = createAlova({
-      baseURL: `${opts.giteaHost.endsWith('/') ? '' : '/'}api/v1`,
+      baseURL: `${opts.giteaHost.endsWith('/') ? opts.giteaHost : `${opts.giteaHost}/`}api/v1`,
       requestAdapter: fetchAdapter(),
       beforeRequest: (method) => {
         if (typeof method.config.params !== 'string') {
