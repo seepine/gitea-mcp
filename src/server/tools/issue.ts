@@ -74,7 +74,8 @@ export const registerIssueTools = (server: McpServer) => {
       description: 'Get a single issue by index number',
       inputSchema: getIssueByIndexSchema,
     },
-    async ({ owner, repo, index }) => handleTool((gitea) => gitea.getIssueByIndex(owner, repo, index)),
+    async ({ owner, repo, index }) =>
+      handleTool((gitea) => gitea.getIssueByIndex(owner, repo, index)),
   )
 
   server.registerTool(
@@ -84,9 +85,7 @@ export const registerIssueTools = (server: McpServer) => {
       inputSchema: listRepoIssuesSchema,
     },
     async ({ owner, repo, page, limit, state }) =>
-      handleTool((gitea) =>
-        gitea.listRepoIssues(owner, repo, { page, limit, state }),
-      ),
+      handleTool((gitea) => gitea.listRepoIssues(owner, repo, { page, limit, state })),
   )
 
   server.registerTool(
@@ -125,7 +124,8 @@ export const registerIssueTools = (server: McpServer) => {
       description: 'Get all comments on an issue',
       inputSchema: getIssueCommentsByIndexSchema,
     },
-    async ({ owner, repo, index }) => handleTool((gitea) => gitea.getIssueCommentsByIndex(owner, repo, index)),
+    async ({ owner, repo, index }) =>
+      handleTool((gitea) => gitea.getIssueCommentsByIndex(owner, repo, index)),
   )
 
   server.registerTool(

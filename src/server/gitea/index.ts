@@ -71,11 +71,20 @@ export class Gitea {
     return this.Apis.issue.issueListLabels({ pathParams: { owner, repo }, params: params ?? {} })
   }
 
-  async createRepoLabel(owner: string, repo: string, data: { name: string; color: string; description?: string }) {
+  async createRepoLabel(
+    owner: string,
+    repo: string,
+    data: { name: string; color: string; description?: string },
+  ) {
     return this.Apis.issue.issueCreateLabel({ pathParams: { owner, repo }, data })
   }
 
-  async editRepoLabel(owner: string, repo: string, labelId: number, data: { name?: string; color?: string; description?: string }) {
+  async editRepoLabel(
+    owner: string,
+    repo: string,
+    labelId: number,
+    data: { name?: string; color?: string; description?: string },
+  ) {
     return this.Apis.issue.issueEditLabel({ pathParams: { owner, repo, id: labelId }, data })
   }
 
@@ -85,7 +94,10 @@ export class Gitea {
 
   async replaceIssueLabels(owner: string, repo: string, index: number, data: { labels: number[] }) {
     // IssueLabelsOption in generated types incorrectly uses null[], actual API accepts number[] or string[]
-    return this.Apis.issue.issueReplaceLabels({ pathParams: { owner, repo, index }, data: data as any })
+    return this.Apis.issue.issueReplaceLabels({
+      pathParams: { owner, repo, index },
+      data: data as any,
+    })
   }
 
   async createIssueComment(owner: string, repo: string, index: number, data: { body: string }) {

@@ -38,8 +38,7 @@ export const registerRepoTools = (server: McpServer) => {
       description: 'List repositories owned by the current user',
       inputSchema: repoListMySchema,
     },
-    async ({ page, limit }) =>
-      handleTool((gitea) => gitea.listMyRepos({ page, limit })),
+    async ({ page, limit }) => handleTool((gitea) => gitea.listMyRepos({ page, limit })),
   )
 
   server.registerTool(
@@ -48,9 +47,27 @@ export const registerRepoTools = (server: McpServer) => {
       description: 'Create a new repository',
       inputSchema: repoCreateSchema,
     },
-    async ({ name, description, private: isPrivate, auto_init, gitignore_template, license_template, readme, default_branch }) =>
+    async ({
+      name,
+      description,
+      private: isPrivate,
+      auto_init,
+      gitignore_template,
+      license_template,
+      readme,
+      default_branch,
+    }) =>
       handleTool((gitea) =>
-        gitea.createRepo({ name, description, private: isPrivate, auto_init, gitignore_template, license_template, readme, default_branch }),
+        gitea.createRepo({
+          name,
+          description,
+          private: isPrivate,
+          auto_init,
+          gitignore_template,
+          license_template,
+          readme,
+          default_branch,
+        }),
       ),
   )
 
@@ -60,7 +77,8 @@ export const registerRepoTools = (server: McpServer) => {
       description: 'Fork a repository',
       inputSchema: repoForkSchema,
     },
-    async ({ owner, repo, organization }) => handleTool((gitea) => gitea.forkRepo(owner, repo, { organization })),
+    async ({ owner, repo, organization }) =>
+      handleTool((gitea) => gitea.forkRepo(owner, repo, { organization })),
   )
 
   server.registerTool(

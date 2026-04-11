@@ -40,9 +40,7 @@ export const registerIssueTagTools = (server: McpServer) => {
       inputSchema: listLabelsSchema,
     },
     async ({ owner, repo, page, limit }) =>
-      handleTool((gitea) =>
-        gitea.listRepoLabels(owner, repo, { page, limit }),
-      ),
+      handleTool((gitea) => gitea.listRepoLabels(owner, repo, { page, limit })),
   )
 
   server.registerTool(
