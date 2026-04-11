@@ -69,22 +69,22 @@ docker run -p 4000:4000 gitea-mcp node sse.js
 | 工具                                | 范围         | 描述                                                           |
 | ----------------------------------- | ------------ | -------------------------------------------------------------- |
 | user\_\_get_my_userinfo             | User         | 获取当前用户信息                                               |
-| issue\_\_get_by_index               | Issue        | 根据索引号获取单个 Issue                                       |
-| issue\_\_list                       | Issue        | 列出仓库的 Issue，支持过滤                                     |
-| issue\_\_list_my_assigned           | Issue        | 列出分配给当前用户的 Issue                                     |
-| issue\_\_create                     | Issue        | 在仓库中创建新 Issue                                           |
-| issue\_\_edit                       | Issue        | 编辑 Issue（标题、正文、状态或标签）                           |
-| issue\_\_get_comments               | Issue        | 获取 Issue 的所有评论                                          |
-| issue\_\_create_comment             | Issue        | 添加评论到 Issue                                               |
-| issue\_\_edit_comment               | Issue        | 编辑 Issue 的评论                                              |
-| issue_label\_\_list                 | IssueLabel   | 列出仓库的所有标签                                             |
-| issue_label\_\_create               | IssueLabel   | 在仓库中创建新标签                                             |
-| issue_label\_\_edit                 | IssueLabel   | 编辑现有标签                                                   |
-| issue_label\_\_delete               | IssueLabel   | 删除仓库中的标签                                               |
 | repo\_\_list_my                     | Repo         | 列出当前用户拥有的仓库                                         |
 | repo\_\_create                      | Repo         | 创建新仓库                                                     |
 | repo\_\_fork                        | Repo         | Fork 仓库                                                      |
 | repo\_\_list_tags                   | Repo         | 列出仓库的所有标签                                             |
+| issue\_\_get_by_index               | Issue        | 根据索引号获取单个 Issue                                       |
+| issue\_\_list                       | Issue        | 列出仓库的 Issue，支持过滤                                     |
+| issue\_\_search_list                | Issue        | 搜索 Issue（按指派给我/我创建的），支持关键词和标签过滤         |
+| issue\_\_create                     | Issue        | 在仓库中创建新 Issue                                           |
+| issue\_\_edit                       | Issue        | 编辑 Issue（标题、正文、状态或标签）                           |
+| issue\_\_comment_list               | Issue        | 获取 Issue 的所有评论                                          |
+| issue\_\_comment_create             | Issue        | 添加评论到 Issue                                               |
+| issue\_\_comment_edit               | Issue        | 编辑 Issue 的评论                                              |
+| issue_label\_\_list                 | IssueLabel   | 列出仓库的所有标签                                             |
+| issue_label\_\_create               | IssueLabel   | 在仓库中创建新标签                                             |
+| issue_label\_\_edit                 | IssueLabel   | 编辑现有标签                                                   |
+| issue_label\_\_delete               | IssueLabel   | 删除仓库中的标签                                               |
 | pull_request\_\_list                | Pull Request | 列出仓库的 Pull Request，支持过滤和排序                        |
 | pull_request\_\_get                 | Pull Request | 根据索引号获取单个 Pull Request                                |
 | pull_request\_\_create              | Pull Request | 创建新 Pull Request                                            |

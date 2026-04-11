@@ -18,9 +18,13 @@ const listRepoIssuesSchema = z.object({
     .default('open')
     .optional()
     .describe('Filter by state (open, closed, all)'),
+  labels: z.array(z.string()).optional().describe('Filter by labels (array of label names)'),
+  keyword: z.string().optional().describe('Search keyword in issue title/body'),
+  created_by: z.string().optional().describe('Filter by creator username'),
+  assigned_by: z.string().optional().describe('Filter by assignee username'),
 })
 
-const listMyAssignedIssuesSchema = z.object({
+const searchIssuesSchema = z.object({
   page: z.number().optional().describe('Page number'),
   limit: z.number().optional().describe('Items per page'),
   state: z
@@ -28,6 +32,11 @@ const listMyAssignedIssuesSchema = z.object({
     .default('open')
     .optional()
     .describe('Filter by state (open, closed, all)'),
+  type: z
+    .enum(['assigned', 'created'])
+    .describe('Filter by type (assigned: issues assigned to me, created: issues created by me)'),
+  labels: z.array(z.string()).optional().describe('Filter by labels (array of label names)'),
+  keyword: z.string().optional().describe('Search keyword in issue title/body'),
 })
 
 const createIssueSchema = z.object({
@@ -84,18 +93,30 @@ export const registerIssueTools = (server: McpServer) => {
       description: 'List issues for a repository with optional filtering',
       inputSchema: listRepoIssuesSchema,
     },
-    async ({ owner, repo, page, limit, state }) =>
-      handleTool((gitea) => gitea.listRepoIssues(owner, repo, { page, limit, state })),
+    async ({ owner, repo, page, limit, state, labels, keyword, created_by, assigned_by }) =>
+      handleTool((gitea) =>
+        gitea.listRepoIssues(owner, repo, {
+          page,
+          limit,
+          state,
+          labels: labels?.join(','),
+          q: keyword,
+          created_by,
+          assigned_by,
+        }),
+      ),
   )
 
   server.registerTool(
-    'issue__list_my_assigned',
+    'issue__search_list',
     {
-      description: 'List issues assigned to the current user',
-      inputSchema: listMyAssignedIssuesSchema,
+      description: 'Search issues',
+      inputSchema: searchIssuesSchema,
     },
-    async ({ page, limit, state }) =>
-      handleTool((gitea) => gitea.listMyAssignedIssues({ page, limit, state })),
+    async ({ page, limit, state, type, labels, keyword }) =>
+      handleTool((gitea) =>
+        gitea.searchIssues({ state, labels: labels?.join(','), page, limit, type, q: keyword }),
+      ),
   )
 
   server.registerTool(
@@ -119,7 +140,7 @@ export const registerIssueTools = (server: McpServer) => {
   )
 
   server.registerTool(
-    'issue__get_comments',
+    'issue__comment_list',
     {
       description: 'Get all comments on an issue',
       inputSchema: getIssueCommentsByIndexSchema,
@@ -129,7 +150,7 @@ export const registerIssueTools = (server: McpServer) => {
   )
 
   server.registerTool(
-    'issue__create_comment',
+    'issue__comment_create',
     {
       description: 'Add a comment to an issue',
       inputSchema: createIssueCommentSchema,
@@ -139,7 +160,7 @@ export const registerIssueTools = (server: McpServer) => {
   )
 
   server.registerTool(
-    'issue__edit_comment',
+    'issue__comment_edit',
     {
       description: 'Edit a comment on an issue',
       inputSchema: editIssueCommentSchema,

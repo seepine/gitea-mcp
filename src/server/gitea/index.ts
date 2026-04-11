@@ -42,9 +42,28 @@ export class Gitea {
       before?: string
       page?: number
       limit?: number
+      created_by?: string
+      assigned_by?: string
     },
   ) {
     return this.Apis.issue.issueListIssues({ pathParams: { owner, repo }, params: params ?? {} })
+  }
+
+  async searchIssues(params: {
+    state?: 'open' | 'closed' | 'all'
+    labels?: string
+    milestones?: string
+    q?: string
+    type?: 'assigned' | 'created'
+    since?: string
+    before?: string
+    page?: number
+    limit?: number
+  }) {
+    const { type, ...rest } = params
+    return this.Apis.issue.issueSearchIssues({
+      params: { ...rest, [type as string]: true },
+    })
   }
 
   async createIssue(
@@ -140,20 +159,6 @@ export class Gitea {
 
   async listTags(owner: string, repo: string, params?: { page?: number; limit?: number }) {
     return this.Apis.repository.repoListTags({ pathParams: { owner, repo }, params: params ?? {} })
-  }
-
-  async listMyAssignedIssues(params?: {
-    state?: 'open' | 'closed' | 'all'
-    labels?: string
-    milestones?: string
-    q?: string
-    type?: 'issues' | 'pulls'
-    since?: string
-    before?: string
-    page?: number
-    limit?: number
-  }) {
-    return this.Apis.issue.issueSearchIssues({ params: { ...params, assigned: true } })
   }
 
   async listMyPullRequests(params?: {
