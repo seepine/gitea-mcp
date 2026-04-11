@@ -1,8 +1,14 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { registerUserTools } from './user'
+import { registerIssueTools } from './issue'
+import { registerIssueTagTools } from './issue-label'
+import { registerRepoTools } from './repo'
+import { registerPullRequestTools } from './pull-request'
 
 export const registerTools = (server: McpServer) => {
   registerUserTools(server)
-
-  // 添加更多工具注册...
+  registerIssueTools(server)
+  registerIssueTagTools(server)
+  registerRepoTools(server)
+  registerPullRequestTools(server)
 }

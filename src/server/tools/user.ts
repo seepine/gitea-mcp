@@ -1,23 +1,12 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import { Gitea } from '../gitea'
-import { ctx } from '../context'
+import { handleTool } from '../utils/handleTool'
 
 export const registerUserTools = (server: McpServer) => {
   server.registerTool(
-    'get_current_userinfo',
+    'user__get_my_userinfo',
     {
-      description: 'Get current userinfo',
+      description: 'Get the current user profile',
     },
-    async ({}) => {
-      const gitea = new Gitea(ctx.get())
-      return {
-        content: [
-          {
-            type: 'text',
-            text: JSON.stringify(await gitea.getCurrentUserinfo(), null, 2),
-          },
-        ],
-      }
-    },
+    async () => handleTool((gitea) => gitea.getCurrentUserinfo()),
   )
 }
