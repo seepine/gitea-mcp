@@ -1,6 +1,6 @@
 {
   "name": "gitea-mcp",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "seepine",
   "license": "MIT",
   "description": "Interactive with Gitea instances with MCP",

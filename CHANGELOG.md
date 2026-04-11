@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.7](https://github.com/seepine/gitea-mcp/compare/v0.0.6...v0.0.7) (2026-04-11)
+
+
+### Features
+
+* **gitea:** consolidate issue search and rename comment tools ([3adc21f](https://github.com/seepine/gitea-mcp/commit/3adc21fb0b6e770262c9cd46bd330a420e66e1e0))
+
 ## [0.0.6](https://github.com/seepine/gitea-mcp/compare/v0.0.5...v0.0.6) (2026-04-11)
 
 
