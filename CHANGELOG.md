@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.8](https://github.com/seepine/gitea-mcp/compare/v0.0.7...v0.0.8) (2026-04-12)
+
+
+### Features
+
+* **gitea:** add tools to add and remove issue labels ([89c5d17](https://github.com/seepine/gitea-mcp/commit/89c5d174cee121d79ca162c4b25dbfed02f109be))
+
 ## [0.0.7](https://github.com/seepine/gitea-mcp/compare/v0.0.6...v0.0.7) (2026-04-11)
 
 
