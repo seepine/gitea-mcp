@@ -119,6 +119,19 @@ export class Gitea {
     })
   }
 
+  async addIssueLabels(owner: string, repo: string, index: number, data: { labels: number[] }) {
+    return this.Apis.issue.issueAddLabel({
+      pathParams: { owner, repo, index },
+      data: data as any,
+    })
+  }
+
+  async removeIssueLabel(owner: string, repo: string, index: number, labelId: number) {
+    return this.Apis.issue.issueRemoveLabel({
+      pathParams: { owner, repo, index, id: labelId },
+    })
+  }
+
   async createIssueComment(owner: string, repo: string, index: number, data: { body: string }) {
     return this.Apis.issue.issueCreateComment({ pathParams: { owner, repo, index }, data })
   }

@@ -47,6 +47,20 @@ const createIssueSchema = z.object({
   labels: z.array(z.number()).optional().describe('Label IDs to assign'),
 })
 
+const addIssueLabelsSchema = z.object({
+  owner: z.string().describe('Repository owner'),
+  repo: z.string().describe('Repository name'),
+  index: z.number().describe('Issue index number'),
+  labels: z.array(z.string()).describe('Label names to add'),
+})
+
+const removeIssueLabelsSchema = z.object({
+  owner: z.string().describe('Repository owner'),
+  repo: z.string().describe('Repository name'),
+  index: z.number().describe('Issue index number'),
+  labels: z.array(z.string()).describe('Label names to remove'),
+})
+
 const getIssueCommentsByIndexSchema = z.object({
   owner: z.string().describe('Repository owner'),
   repo: z.string().describe('Repository name'),
@@ -130,9 +144,48 @@ export const registerIssueTools = (server: McpServer) => {
   )
 
   server.registerTool(
+    'issue__add_labels',
+    {
+      description: 'Add labels to an issue',
+      inputSchema: addIssueLabelsSchema,
+    },
+    async ({ owner, repo, index, labels }) =>
+      handleTool(async (gitea) => {
+        const allLabels = await gitea.listRepoLabels(owner, repo, { limit: 100 })
+        const labelIds = labels
+          .map((name) => {
+            const found = allLabels.find((l: any) => l.name === name)
+            return found?.id
+          })
+          .filter((id): id is number => id !== undefined)
+        return gitea.addIssueLabels(owner, repo, index, { labels: labelIds })
+      }),
+  )
+
+  server.registerTool(
+    'issue__remove_labels',
+    {
+      description: 'Remove labels from an issue',
+      inputSchema: removeIssueLabelsSchema,
+    },
+    async ({ owner, repo, index, labels }) =>
+      handleTool(async (gitea) => {
+        const allLabels = await gitea.listRepoLabels(owner, repo, { limit: 100 })
+        const results = []
+        for (const name of labels) {
+          const found = allLabels.find((l: any) => l.name === name)
+          if (found?.id) {
+            results.push(await gitea.removeIssueLabel(owner, repo, index, found.id))
+          }
+        }
+        return results
+      }),
+  )
+
+  server.registerTool(
     'issue__edit',
     {
-      description: 'Edit an issue (title, body, state, or labels)',
+      description: 'Edit an issue (title, body, state)',
       inputSchema: editIssueSchema,
     },
     async ({ owner, repo, index, title, body, state }) =>
