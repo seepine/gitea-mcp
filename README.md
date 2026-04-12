@@ -79,7 +79,9 @@ docker run -p 4000:4000 seepine/gitea-mcp node sse.js
 | `issue__list`                       | Issue        | 列出仓库的 Issue，支持过滤           |
 | `issue__search_list`                | Issue        | 搜索 Issue（按指派给我/我创建的）    |
 | `issue__create`                     | Issue        | 在仓库中创建新 Issue                 |
-| `issue__edit`                       | Issue        | 编辑 Issue（标题、正文、状态或标签） |
+| `issue__edit`                       | Issue        | 编辑 Issue（标题、正文、状态）         |
+| `issue__add_labels`                 | Issue        | 给 Issue 添加标签                      |
+| `issue__remove_labels`              | Issue        | 从 Issue 移除标签                      |
 | `issue__comment_list`               | Issue        | 获取 Issue 的所有评论                |
 | `issue__comment_create`             | Issue        | 添加评论到 Issue                     |
 | `issue__comment_edit`               | Issue        | 编辑 Issue 的评论                    |
