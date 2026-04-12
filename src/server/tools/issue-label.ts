@@ -61,7 +61,7 @@ export const registerIssueTagTools = (server: McpServer) => {
     },
     async ({ owner, repo, labelId, name, color, description }) =>
       handleTool((gitea) =>
-        gitea.editRepoLabel(owner, repo, labelId, { name, color, description }),
+        gitea.editIssueLabel(owner, repo, labelId, { name, color, description }),
       ),
   )
 

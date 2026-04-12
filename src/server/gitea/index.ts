@@ -95,16 +95,31 @@ export class Gitea {
     repo: string,
     data: { name: string; color: string; description?: string },
   ) {
-    return this.Apis.issue.issueCreateLabel({ pathParams: { owner, repo }, data })
+    let _data = {
+      ...data,
+      exclusive: false,
+    }
+    if (data.name.includes('/')) {
+      _data.exclusive = true
+    }
+    return this.Apis.issue.issueCreateLabel({ pathParams: { owner, repo }, data: _data })
   }
 
-  async editRepoLabel(
+  async editIssueLabel(
     owner: string,
     repo: string,
     labelId: number,
-    data: { name?: string; color?: string; description?: string },
+    data: { name?: string; color?: string; description?: string; exclusive?: boolean },
   ) {
-    return this.Apis.issue.issueEditLabel({ pathParams: { owner, repo, id: labelId }, data })
+    let _data = {
+      ...data,
+    }
+    if (_data.name) {
+      if (_data.name.includes('/')) {
+        _data.exclusive = true
+      }
+    }
+    return this.Apis.issue.issueEditLabel({ pathParams: { owner, repo, id: labelId }, data: _data })
   }
 
   async deleteRepoLabel(owner: string, repo: string, labelId: number) {
