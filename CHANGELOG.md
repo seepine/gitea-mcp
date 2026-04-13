@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.9](https://github.com/seepine/gitea-mcp/compare/v0.0.8...v0.0.9) (2026-04-13)
+
+
+### Features
+
+* **pull-request:** add tool to request reviewer to re-review pull request ([18a71e8](https://github.com/seepine/gitea-mcp/commit/18a71e81b35c65443df01dd2eadf16cc7997dce6))
+
 ## [0.0.8](https://github.com/seepine/gitea-mcp/compare/v0.0.7...v0.0.8) (2026-04-12)
 
 
