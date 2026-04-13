@@ -13,8 +13,11 @@ export class Gitea {
           method.config.params.access_token = opts.giteaAccessToken
         }
       },
-      responded: (res) => {
-        return res.json()
+      responded: async (res) => {
+        if (res.status >= 400) {
+          throw new Error(JSON.stringify(await res.json()))
+        }
+        return await res.json()
       },
     })
     const $$userConfigMap = withConfigType({})
@@ -87,7 +90,22 @@ export class Gitea {
   }
 
   async listRepoLabels(owner: string, repo: string, params?: { page?: number; limit?: number }) {
-    return this.Apis.issue.issueListLabels({ pathParams: { owner, repo }, params: params ?? {} })
+    const labels = []
+    try {
+      const orgLables = await this.Apis.organization.orgListLabels({
+        pathParams: {
+          org: owner,
+        },
+        params: {},
+      })
+      labels.push(...orgLables)
+    } catch (e) {}
+    const repoLabels = await this.Apis.issue.issueListLabels({
+      pathParams: { owner, repo },
+      params: params ?? {},
+    })
+    labels.push(...repoLabels)
+    return labels
   }
 
   async createRepoLabel(
