@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.10](https://github.com/seepine/gitea-mcp/compare/v0.0.9...v0.0.10) (2026-04-13)
+
+
+### Features
+
+* **gitea:** combine organization and repository labels in listRepoLabels ([652a467](https://github.com/seepine/gitea-mcp/commit/652a46707370ac3ecb9c2a87430ae559e6ff97bb))
+
 ## [0.0.9](https://github.com/seepine/gitea-mcp/compare/v0.0.8...v0.0.9) (2026-04-13)
 
 
