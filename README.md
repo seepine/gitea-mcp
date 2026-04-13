@@ -68,37 +68,38 @@ docker run -p 4000:4000 seepine/gitea-mcp node sse.js
 
 ## 可用工具
 
-| 工具                                | 范围         | 描述                                 |
-| ----------------------------------- | ------------ | ------------------------------------ |
-| `user__get_my_userinfo`             | User         | 获取当前用户信息                     |
-| `repo__list_my`                     | Repo         | 列出当前用户拥有的仓库               |
-| `repo__create`                      | Repo         | 创建新仓库                           |
-| `repo__fork`                        | Repo         | Fork 仓库                            |
-| `repo__list_tags`                   | Repo         | 列出仓库的所有标签                   |
-| `issue__get_by_index`               | Issue        | 根据索引号获取单个 Issue             |
-| `issue__list`                       | Issue        | 列出仓库的 Issue，支持过滤           |
-| `issue__search_list`                | Issue        | 搜索 Issue（按指派给我/我创建的）    |
-| `issue__create`                     | Issue        | 在仓库中创建新 Issue                 |
-| `issue__edit`                       | Issue        | 编辑 Issue（标题、正文、状态）         |
-| `issue__add_labels`                 | Issue        | 给 Issue 添加标签                      |
-| `issue__remove_labels`              | Issue        | 从 Issue 移除标签                      |
-| `issue__comment_list`               | Issue        | 获取 Issue 的所有评论                |
-| `issue__comment_create`             | Issue        | 添加评论到 Issue                     |
-| `issue__comment_edit`               | Issue        | 编辑 Issue 的评论                    |
-| `issue_label__list`                 | IssueLabel   | 列出仓库的所有标签                   |
-| `issue_label__create`               | IssueLabel   | 在仓库中创建新标签                   |
-| `issue_label__edit`                 | IssueLabel   | 编辑现有标签                         |
-| `issue_label__delete`               | IssueLabel   | 删除仓库中的标签                     |
-| `pull_request__list`                | Pull Request | 列出仓库的 Pull Request              |
-| `pull_request__get`                 | Pull Request | 根据索引号获取单个 Pull Request      |
-| `pull_request__create`              | Pull Request | 创建新 Pull Request                  |
-| `pull_request__add_reviewer`        | Pull Request | 添加审核者到 Pull Request            |
-| `pull_request__delete_reviewer`     | Pull Request | 从 Pull Request 中移除审核者         |
-| `pull_request__get_review`          | Pull Request | 获取指定审核                         |
-| `pull_request__get_review_comments` | Pull Request | 获取审核的内联评论                   |
-| `pull_request__list_reviews`        | Pull Request | 列出所有审核                         |
-| `pull_request__edit`                | Pull Request | 编辑 Pull Request                    |
-| `pull_request__list_my`             | Pull Request | 列出当前用户创建的 Pull Request      |
+| 工具                                 | 范围         | 描述                              |
+| ------------------------------------ | ------------ | --------------------------------- |
+| `user__get_my_userinfo`              | User         | 获取当前用户信息                  |
+| `repo__list_my`                      | Repo         | 列出当前用户拥有的仓库            |
+| `repo__create`                       | Repo         | 创建新仓库                        |
+| `repo__fork`                         | Repo         | Fork 仓库                         |
+| `repo__list_tags`                    | Repo         | 列出仓库的所有标签                |
+| `issue__get_by_index`                | Issue        | 根据索引号获取单个 Issue          |
+| `issue__list`                        | Issue        | 列出仓库的 Issue，支持过滤        |
+| `issue__search_list`                 | Issue        | 搜索 Issue（按指派给我/我创建的） |
+| `issue__create`                      | Issue        | 在仓库中创建新 Issue              |
+| `issue__edit`                        | Issue        | 编辑 Issue（标题、正文、状态）    |
+| `issue__add_labels`                  | Issue        | 给 Issue 添加标签                 |
+| `issue__remove_labels`               | Issue        | 从 Issue 移除标签                 |
+| `issue__comment_list`                | Issue        | 获取 Issue 的所有评论             |
+| `issue__comment_create`              | Issue        | 添加评论到 Issue                  |
+| `issue__comment_edit`                | Issue        | 编辑 Issue 的评论                 |
+| `issue_label__list`                  | IssueLabel   | 列出仓库的所有标签                |
+| `issue_label__create`                | IssueLabel   | 在仓库中创建新标签                |
+| `issue_label__edit`                  | IssueLabel   | 编辑现有标签                      |
+| `issue_label__delete`                | IssueLabel   | 删除仓库中的标签                  |
+| `pull_request__list`                 | Pull Request | 列出仓库的 Pull Request           |
+| `pull_request__get`                  | Pull Request | 根据索引号获取单个 Pull Request   |
+| `pull_request__create`               | Pull Request | 创建新 Pull Request               |
+| `pull_request__add_reviewer`         | Pull Request | 添加评审者到 Pull Request         |
+| `pull_request__request_to_re_review` | Pull Request | 请求评审者重新审核                |
+| `pull_request__delete_reviewer`      | Pull Request | 从 Pull Request 中移除审核者      |
+| `pull_request__get_review`           | Pull Request | 获取指定审核                      |
+| `pull_request__get_review_comments`  | Pull Request | 获取审核的内联评论                |
+| `pull_request__list_reviews`         | Pull Request | 列出所有审核                      |
+| `pull_request__edit`                 | Pull Request | 编辑 Pull Request                 |
+| `pull_request__list_my`              | Pull Request | 列出当前用户创建的 Pull Request   |
 
 ## 开发
 

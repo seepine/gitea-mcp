@@ -155,6 +155,18 @@ export const registerPullRequestTools = (server: McpServer) => {
   )
 
   server.registerTool(
+    'pull_request__request_to_re_review',
+    {
+      description: 'Request the reviewer to re-review a pull request',
+      inputSchema: addReviewerSchema,
+    },
+    async ({ owner, repo, index, reviewers, team_reviewers }) =>
+      handleTool((gitea) =>
+        gitea.addPullRequestReviewer(owner, repo, index, { reviewers, team_reviewers }),
+      ),
+  )
+
+  server.registerTool(
     'pull_request__delete_reviewer',
     {
       description: 'Remove a reviewer from a pull request',
